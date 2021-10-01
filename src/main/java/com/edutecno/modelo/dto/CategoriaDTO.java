@@ -1,19 +1,19 @@
 package com.edutecno.modelo.dto;
 
 public class CategoriaDTO {
-	private int idCategoria;
+	private double idCategoria;
 	private String nombreCategoria;
 	
 	
-	public CategoriaDTO(int idCategoria, String nombreCategoria) {
+	public CategoriaDTO(double idCategoria, String nombreCategoria) {
 		super();
 		this.idCategoria = idCategoria;
 		this.nombreCategoria = nombreCategoria;
 	}
-	public int getIdCategoria() {
+	public double getIdCategoria() {
 		return idCategoria;
 	}
-	public void setIdCategoria(int idCategoria) {
+	public void setIdCategoria(double idCategoria) {
 		this.idCategoria = idCategoria;
 	}
 	public String getNombreCategoria() {
