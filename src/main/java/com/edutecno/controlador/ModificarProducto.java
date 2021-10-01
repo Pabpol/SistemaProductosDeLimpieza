@@ -1,28 +1,23 @@
 package com.edutecno.controlador;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.edutecno.facade.Facade;
-import com.edutecno.modelo.dto.ProductoDTO;
-
 /**
- * Servlet implementation class Inicio
+ * Servlet implementation class ModificarProducto
  */
-@WebServlet({"/Inicio"})
-public class Inicio extends HttpServlet {
+@WebServlet("/ModificarProducto")
+public class ModificarProducto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Inicio() {
+    public ModificarProducto() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,11 +27,7 @@ public class Inicio extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Facade facade = new Facade();
-		List<ProductoDTO> productos = facade.listarProductos();
-		request.setAttribute("productos", productos);
-		request.getServletContext().getRequestDispatcher("/inicio.jsp").forward(request, response);
-		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
