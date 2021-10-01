@@ -24,14 +24,14 @@ public class ProductoDAO implements DAO<ProductoDTO, Double> {
 			conexion = Conexion.getConnection();
 			PreparedStatement ps = conexion.prepareStatement(consultaSQL);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-			ProductoDTO producto = new ProductoDTO();
-			producto.setIdProducto(rs.getDouble("id_producto"));
-			producto.setNombreProdcuto(rs.getString("nombre_producto"));
-			producto.setPrecioProducto(rs.getDouble("precio_producto"));
-			producto.setDescripcionProducto(rs.getString("descripcion_producto"));
-			producto.setCategoria(new CategoriaDTO(rs.getDouble("id_categoria"), rs.getString("nombre_categoria")));
-			productos.add(producto);
+			while (rs.next()) {
+				ProductoDTO producto = new ProductoDTO();
+				producto.setIdProducto(rs.getDouble("id_producto"));
+				producto.setNombreProdcuto(rs.getString("nombre_producto"));
+				producto.setPrecioProducto(rs.getDouble("precio_producto"));
+				producto.setDescripcionProducto(rs.getString("descripcion_producto"));
+				producto.setCategoria(new CategoriaDTO(rs.getDouble("id_categoria"), rs.getString("nombre_categoria")));
+				productos.add(producto);
 			}
 
 		} catch (SQLException e) {
@@ -72,43 +72,40 @@ public class ProductoDAO implements DAO<ProductoDTO, Double> {
 
 	@Override
 	public int insert(ProductoDTO objetos) {
-		int max = 0;
+
 		Connection conexion = null;
 		int registrosAfectados = 0;
-		String consultaProximoId = " SELECT MAX(id_producto)+1 FROM producto";
-		String consultaSQL = "INSERT INTO producto(id_producto, nombre_producto, precio_producto, descripcion_producto, id_categoria) VALUES(?,?,?,?)";
-		
+
+		String consultaSQL = "INSERT INTO producto(nombre_producto, precio_producto, descripcion_producto, id_categoria) VALUES(?,?,?,?)";
+
 		try {
 			conexion = Conexion.getConnection();
-			PreparedStatement ps = conexion.prepareStatement(consultaProximoId);
-			ResultSet rs = conexion.prepareStatement(consultaSQL).executeQuery();
-			if (rs.next()) {
-				 max = rs.getInt(1);
-					ps.setInt(1, max);
-					ps.setString(2, objetos.getNombreProdcuto());
-					ps.setDouble(3, objetos.getPrecioProducto());
-					ps.setString(4, objetos.getDescripcionProducto());
-					ps.setDouble(5, objetos.getCategoria().getIdCategoria());
-					registrosAfectados = ps.executeUpdate();
-					
-					if (registrosAfectados != 1) {
-						throw new RuntimeException("A ocurrido un error inesperado");
-					}		
+			PreparedStatement ps = conexion.prepareStatement(consultaSQL);
+
+			ps.setString(1, objetos.getNombreProdcuto());
+			ps.setDouble(2, objetos.getPrecioProducto());
+			ps.setString(3, objetos.getDescripcionProducto());
+			ps.setDouble(4, objetos.getCategoria().getIdCategoria());
+			registrosAfectados = ps.executeUpdate();
+
+			if (registrosAfectados != 1) {
+				throw new RuntimeException("A ocurrido un error inesperado");
 			}
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return registrosAfectados;
 	}
 
 	@Override
 	public int update(ProductoDTO objeto) {
-		
+
 		Connection conexion = null;
 		int registrosAfectados = 0;
-		String consultaSQL = "UPDATE producto SET nombre_producto = ?, precio_producto = ?, descripcion_producto = ?, id_categoria = ?, WHERE id_producto = ?;";
+		String consultaSQL = "UPDATE producto SET nombre_producto = ?, precio_producto = ?, descripcion_producto = ?, id_categoria = ? WHERE id_producto = ?;";
 		try {
 			conexion = Conexion.getConnection();
 			PreparedStatement ps = conexion.prepareStatement(consultaSQL);
@@ -118,7 +115,7 @@ public class ProductoDAO implements DAO<ProductoDTO, Double> {
 			ps.setDouble(4, objeto.getCategoria().getIdCategoria());
 			ps.setDouble(5, objeto.getIdProducto());
 			registrosAfectados = ps.executeUpdate();
-			if(registrosAfectados != 1) {
+			if (registrosAfectados != 1) {
 				throw new Exception("Error al actualizar");
 			}
 		} catch (Exception e) {
@@ -126,7 +123,7 @@ public class ProductoDAO implements DAO<ProductoDTO, Double> {
 			e.printStackTrace();
 		}
 		return registrosAfectados;
-		
+
 	}
 
 	@Override
@@ -139,7 +136,7 @@ public class ProductoDAO implements DAO<ProductoDTO, Double> {
 			PreparedStatement ps = conexion.prepareStatement(consultaSQL);
 			ps.setDouble(1, id);
 			registrosAfectados = ps.executeUpdate();
-			if(registrosAfectados != 1) {
+			if (registrosAfectados != 1) {
 				throw new Exception("Error al eliminar");
 			}
 		} catch (Exception e) {
@@ -147,7 +144,7 @@ public class ProductoDAO implements DAO<ProductoDTO, Double> {
 			e.printStackTrace();
 		}
 		return registrosAfectados;
-	
+
 	}
 
 }
