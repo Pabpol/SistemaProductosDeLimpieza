@@ -4,6 +4,12 @@ public class CategoriaDTO {
 	private int idCategoria;
 	private String nombreCategoria;
 	
+	
+	public CategoriaDTO(int idCategoria, String nombreCategoria) {
+		super();
+		this.idCategoria = idCategoria;
+		this.nombreCategoria = nombreCategoria;
+	}
 	public int getIdCategoria() {
 		return idCategoria;
 	}
