@@ -12,7 +12,7 @@ public class Facade {
 	public List<ProductoDTO> listarProductos(){
 		return producto.listar();
 	}
-	public ProductoDTO buscarProductoID(Double id) {
+	public ProductoDTO buscarProductoID(Integer id) {
 		return producto.buscarPorId(id);
 	}
 	public int insertarProducto(ProductoDTO prod) {
@@ -21,7 +21,7 @@ public class Facade {
 	public int updateProducto(ProductoDTO prod) {
 		return producto.update(prod);
 	}
-	public int deleteProducto(Double id) {
+	public int deleteProducto(Integer id) {
 		return producto.delete(id);
 	}
 	

@@ -11,7 +11,7 @@ import com.edutecno.conexion.Conexion;
 import com.edutecno.modelo.dto.CategoriaDTO;
 import com.edutecno.modelo.dto.ProductoDTO;
 
-public class ProductoDAO implements DAO<ProductoDTO, Double> {
+public class ProductoDAO implements DAO<ProductoDTO, Integer> {
 
 	@Override
 	public List<ProductoDTO> listar() {
@@ -26,11 +26,11 @@ public class ProductoDAO implements DAO<ProductoDTO, Double> {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				ProductoDTO producto = new ProductoDTO();
-				producto.setIdProducto(rs.getDouble("id_producto"));
+				producto.setIdProducto(rs.getInt("id_producto"));
 				producto.setNombreProdcuto(rs.getString("nombre_producto"));
-				producto.setPrecioProducto(rs.getDouble("precio_producto"));
+				producto.setPrecioProducto(rs.getInt("precio_producto"));
 				producto.setDescripcionProducto(rs.getString("descripcion_producto"));
-				producto.setCategoria(new CategoriaDTO(rs.getDouble("id_categoria"), rs.getString("nombre_categoria")));
+				producto.setCategoria(new CategoriaDTO(rs.getInt("id_categoria"), rs.getString("nombre_categoria")));
 				productos.add(producto);
 			}
 
@@ -43,7 +43,7 @@ public class ProductoDAO implements DAO<ProductoDTO, Double> {
 	}
 
 	@Override
-	public ProductoDTO buscarPorId(Double id) {
+	public ProductoDTO buscarPorId(Integer id) {
 		ProductoDTO producto = new ProductoDTO();
 		Connection conexion = null;
 
@@ -55,11 +55,11 @@ public class ProductoDAO implements DAO<ProductoDTO, Double> {
 			ps.setDouble(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				producto.setIdProducto(rs.getDouble("id_producto"));
+				producto.setIdProducto(rs.getInt("id_producto"));
 				producto.setNombreProdcuto(rs.getString("nombre_producto"));
-				producto.setPrecioProducto(rs.getDouble("precio_producto"));
+				producto.setPrecioProducto(rs.getInt("precio_producto"));
 				producto.setDescripcionProducto(rs.getString("descripcion_producto"));
-				producto.setCategoria(new CategoriaDTO(rs.getDouble("id_categoria"), rs.getString("nombre_categoria")));
+				producto.setCategoria(new CategoriaDTO(rs.getInt("id_categoria"), rs.getString("nombre_categoria")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -83,9 +83,9 @@ public class ProductoDAO implements DAO<ProductoDTO, Double> {
 			PreparedStatement ps = conexion.prepareStatement(consultaSQL);
 
 			ps.setString(1, objetos.getNombreProdcuto());
-			ps.setDouble(2, objetos.getPrecioProducto());
+			ps.setInt(2, objetos.getPrecioProducto());
 			ps.setString(3, objetos.getDescripcionProducto());
-			ps.setDouble(4, objetos.getCategoria().getIdCategoria());
+			ps.setInt(4, objetos.getCategoria().getIdCategoria());
 			registrosAfectados = ps.executeUpdate();
 
 			if (registrosAfectados != 1) {
@@ -110,10 +110,10 @@ public class ProductoDAO implements DAO<ProductoDTO, Double> {
 			conexion = Conexion.getConnection();
 			PreparedStatement ps = conexion.prepareStatement(consultaSQL);
 			ps.setString(1, objeto.getNombreProdcuto());
-			ps.setDouble(2, objeto.getPrecioProducto());
+			ps.setInt(2, objeto.getPrecioProducto());
 			ps.setString(3, objeto.getDescripcionProducto());
-			ps.setDouble(4, objeto.getCategoria().getIdCategoria());
-			ps.setDouble(5, objeto.getIdProducto());
+			ps.setInt(4, objeto.getCategoria().getIdCategoria());
+			ps.setInt(5, objeto.getIdProducto());
 			registrosAfectados = ps.executeUpdate();
 			if (registrosAfectados != 1) {
 				throw new Exception("Error al actualizar");
@@ -127,14 +127,14 @@ public class ProductoDAO implements DAO<ProductoDTO, Double> {
 	}
 
 	@Override
-	public int delete(Double id) {
+	public int delete(Integer id) {
 		Connection conexion = null;
 		int registrosAfectados = 0;
 		String consultaSQL = "DELETE FROM producto WHERE id_producto = ?;";
 		try {
 			conexion = Conexion.getConnection();
 			PreparedStatement ps = conexion.prepareStatement(consultaSQL);
-			ps.setDouble(1, id);
+			ps.setInt(1, id);
 			registrosAfectados = ps.executeUpdate();
 			if (registrosAfectados != 1) {
 				throw new Exception("Error al eliminar");

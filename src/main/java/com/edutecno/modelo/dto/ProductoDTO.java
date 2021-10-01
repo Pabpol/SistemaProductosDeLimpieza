@@ -2,16 +2,16 @@ package com.edutecno.modelo.dto;
 
 public class ProductoDTO {
 	
-private double idProducto;
+private int idProducto;
 private String nombreProdcuto;
-private double precioProducto;
+private int precioProducto;
 private String descripcionProducto;
 private CategoriaDTO categoria;
 
-public double getIdProducto() {
+public int getIdProducto() {
 	return idProducto;
 }
-public void setIdProducto(double idProducto) {
+public void setIdProducto(int idProducto) {
 	this.idProducto = idProducto;
 }
 public String getNombreProdcuto() {
@@ -20,10 +20,10 @@ public String getNombreProdcuto() {
 public void setNombreProdcuto(String nombreProdcuto) {
 	this.nombreProdcuto = nombreProdcuto;
 }
-public double getPrecioProducto() {
+public int getPrecioProducto() {
 	return precioProducto;
 }
-public void setPrecioProducto(double precioProducto) {
+public void setPrecioProducto(int precioProducto) {
 	this.precioProducto = precioProducto;
 }
 public String getDescripcionProducto() {

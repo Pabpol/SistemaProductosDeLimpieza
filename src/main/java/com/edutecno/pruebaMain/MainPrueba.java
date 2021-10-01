@@ -15,9 +15,9 @@ public class MainPrueba {
 		ProductoDTO producto = new ProductoDTO();
 //		producto.setIdProducto(3.0);
 		producto.setNombreProdcuto("Drive");
-		producto.setPrecioProducto(2500.0);
+		producto.setPrecioProducto(10000);
 		producto.setDescripcionProducto("no lo se");
-		producto.setCategoria(new CategoriaDTO(1.0, "detergente_liquido"));
+		producto.setCategoria(new CategoriaDTO(1, "detergente_liquido"));
 		System.out.println(facade.insertarProducto(producto));
 //		System.out.println(facade.updateProducto(producto));
 //		System.out.println(facade.deleteProducto(3.0));
