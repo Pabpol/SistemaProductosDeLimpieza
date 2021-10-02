@@ -47,7 +47,7 @@ public class ProductoDAO implements DAO<ProductoDTO, Integer> {
 		ProductoDTO producto = new ProductoDTO();
 		Connection conexion = null;
 
-		String consultaSQL = "SELECT id_producto, nombre_producto, precio_producto, descripcion_producto, p.id_categoria, nombre_categoria from producto p inner join categoria c on p.id_categoria = c.id_categoria WHERE c.id_categoria = ?;";
+		String consultaSQL = "SELECT id_producto, nombre_producto, precio_producto, descripcion_producto, p.id_categoria, nombre_categoria from producto p inner join categoria c on p.id_categoria = c.id_categoria WHERE id_producto = ?;";
 
 		try {
 			conexion = Conexion.getConnection();

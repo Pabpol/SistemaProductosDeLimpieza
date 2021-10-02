@@ -10,6 +10,9 @@ public class CategoriaDTO {
 		this.idCategoria = idCategoria;
 		this.nombreCategoria = nombreCategoria;
 	}
+	public CategoriaDTO() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getIdCategoria() {
 		return idCategoria;
 	}

@@ -86,7 +86,7 @@
 								<td><c:out
 										value="${producto.getCategoria().getNombreCategoria()}"></c:out></td>
 								<td class="d-flex justify-content-evenly"><a
-									href="/ProductosDeLimpieza/ModificarProducto?idProducto=${producto.getIdProducto()}"><i
+									href="/ProductosDeLimpieza/IrModificarProducto?idProducto=${producto.getIdProducto()}"><i
 										class="fas fa-pen"></i></a> <a
 									href="/ProductosDeLimpieza/EliminarProducto?idProducto=${producto.getIdProducto()}"><i
 										class="fas fa-trash-alt text-danger"></i></a></td>
