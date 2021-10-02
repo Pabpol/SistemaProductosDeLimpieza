@@ -34,6 +34,7 @@ public class Inicio extends HttpServlet {
 		// TODO Auto-generated method stub
 		Facade facade = new Facade();
 		List<ProductoDTO> productos = facade.listarProductos();
+		request.setAttribute("displayVolver", "d-none");
 		request.setAttribute("productos", productos);
 		request.getServletContext().getRequestDispatcher("/inicio.jsp").forward(request, response);
 		

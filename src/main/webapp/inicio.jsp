@@ -63,7 +63,9 @@
 	<div class="container-fluid px-0 mx-1 mt-4">
 		<div class="row">
 			<div class="col-sm-8">
-				<h1 class="mb-3">Lista de productos</h1>
+				<div class="d-flex justify-content-between"><h1 class="mb-3">Lista de productos</h1><span><a class="${displayVolver}" href="/ProductosDeLimpieza/Inicio"><button class="btn btn-primary">Volver</button></a></span></div>
+				
+				
 				<table class="table">
 					<thead>
 						<tr>
@@ -128,9 +130,13 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm">Buscar por id</div>
-			<div class="col-sm">col-sm</div>
-			<div class="col-sm">col-sm</div>
+			<div class="col-sm-8">				
+			
+				<form class="d-flex" action="/ProductosDeLimpieza/BuscarProducto" method="post">
+					<input class="form-control me-2" type="search" placeholder="Buscar producto por id"
+						aria-label="Buscar" name="idProductoBuscar">
+					<button class="btn btn-outline-success" type="submit">Buscar</button>
+				</form></div>
 		</div>
 	</div>
 

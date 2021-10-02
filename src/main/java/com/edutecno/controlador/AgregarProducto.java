@@ -48,7 +48,6 @@ public class AgregarProducto extends HttpServlet {
 		int precio = Integer.parseInt(request.getParameter("precio"));
 		String descripcion = request.getParameter("descripcion");
 		String nombreCategoria = request.getParameter("categoria");
-		System.out.println(nombreCategoria);
 		if (nombreCategoria.equals("Detergente líquido")) {
 			idCategoria = 1;
 		}else if(nombreCategoria.equals("Detergente en polvo")) {

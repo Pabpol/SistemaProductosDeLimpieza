@@ -48,7 +48,6 @@ public class ModificarProducto extends HttpServlet {
 		producto.setPrecioProducto(Integer.parseInt(request.getParameter("precio")));
 		producto.setDescripcionProducto(request.getParameter("descripcion"));
 		String nombreCategoria = request.getParameter("categoria");
-		System.out.println(nombreCategoria);
 		if (nombreCategoria.equals("Detergente líquido")) {
 			idCategoria = 1;
 		}else if(nombreCategoria.equals("Detergente en polvo")) {
