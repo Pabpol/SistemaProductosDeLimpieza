@@ -16,13 +16,13 @@ public class ProductoDAO implements DAO<ProductoDTO, Integer> {
 	@Override
 	public List<ProductoDTO> listar() {
 		List<ProductoDTO> productos = new ArrayList<ProductoDTO>();
-		Connection conexion = null;
+		Connection cnn = null;
 
 		String consultaSQL = "SELECT id_producto, nombre_producto, precio_producto, descripcion_producto, p.id_categoria, nombre_categoria from producto p inner join categoria c on p.id_categoria = c.id_categoria;";
 
 		try {
-			conexion = Conexion.getConnection();
-			PreparedStatement ps = conexion.prepareStatement(consultaSQL);
+			cnn = Conexion.getConexion().getCnn();
+			PreparedStatement ps = cnn.prepareStatement(consultaSQL);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				ProductoDTO producto = new ProductoDTO();
@@ -45,13 +45,13 @@ public class ProductoDAO implements DAO<ProductoDTO, Integer> {
 	@Override
 	public ProductoDTO buscarPorId(Integer id) {
 		ProductoDTO producto = new ProductoDTO();
-		Connection conexion = null;
+		Connection cnn = null;
 
 		String consultaSQL = "SELECT id_producto, nombre_producto, precio_producto, descripcion_producto, p.id_categoria, nombre_categoria from producto p inner join categoria c on p.id_categoria = c.id_categoria WHERE id_producto = ?;";
 
 		try {
-			conexion = Conexion.getConnection();
-			PreparedStatement ps = conexion.prepareStatement(consultaSQL);
+			cnn = Conexion.getConexion().getCnn();
+			PreparedStatement ps = cnn.prepareStatement(consultaSQL);
 			ps.setDouble(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -73,14 +73,14 @@ public class ProductoDAO implements DAO<ProductoDTO, Integer> {
 	@Override
 	public int insert(ProductoDTO objetos) {
 
-		Connection conexion = null;
+		Connection cnn = null;
 		int registrosAfectados = 0;
 
 		String consultaSQL = "INSERT INTO producto(nombre_producto, precio_producto, descripcion_producto, id_categoria) VALUES(?,?,?,?)";
 
 		try {
-			conexion = Conexion.getConnection();
-			PreparedStatement ps = conexion.prepareStatement(consultaSQL);
+			cnn = Conexion.getConexion().getCnn();
+			PreparedStatement ps = cnn.prepareStatement(consultaSQL);
 
 			ps.setString(1, objetos.getNombreProdcuto());
 			ps.setInt(2, objetos.getPrecioProducto());
@@ -103,12 +103,12 @@ public class ProductoDAO implements DAO<ProductoDTO, Integer> {
 	@Override
 	public int update(ProductoDTO objeto) {
 
-		Connection conexion = null;
+		Connection cnn = null;
 		int registrosAfectados = 0;
 		String consultaSQL = "UPDATE producto SET nombre_producto = ?, precio_producto = ?, descripcion_producto = ?, id_categoria = ? WHERE id_producto = ?;";
 		try {
-			conexion = Conexion.getConnection();
-			PreparedStatement ps = conexion.prepareStatement(consultaSQL);
+			cnn = Conexion.getConexion().getCnn();
+			PreparedStatement ps = cnn.prepareStatement(consultaSQL);
 			ps.setString(1, objeto.getNombreProdcuto());
 			ps.setInt(2, objeto.getPrecioProducto());
 			ps.setString(3, objeto.getDescripcionProducto());
@@ -128,12 +128,12 @@ public class ProductoDAO implements DAO<ProductoDTO, Integer> {
 
 	@Override
 	public int delete(Integer id) {
-		Connection conexion = null;
+		Connection cnn = null;
 		int registrosAfectados = 0;
 		String consultaSQL = "DELETE FROM producto WHERE id_producto = ?;";
 		try {
-			conexion = Conexion.getConnection();
-			PreparedStatement ps = conexion.prepareStatement(consultaSQL);
+			cnn = Conexion.getConexion().getCnn();
+			PreparedStatement ps = cnn.prepareStatement(consultaSQL);
 			ps.setInt(1, id);
 			registrosAfectados = ps.executeUpdate();
 			if (registrosAfectados != 1) {

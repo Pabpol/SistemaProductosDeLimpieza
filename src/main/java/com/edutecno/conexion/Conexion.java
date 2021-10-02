@@ -4,26 +4,41 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.apache.commons.dbcp2.BasicDataSource;
+
 public class Conexion {
 	
-	private static Connection conexion;
 	
-	public static Connection getConnection() {
+	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
+	private final String URL = "jdbc:mysql://localhost:3306/productos_limpieza?serverTimezone=UTC";
+	private final String USR = "root";
+	private final String PWD = "admin";
+	
+	private static Conexion conexion = null;
+	private BasicDataSource poolConexiones; 
+	
+	private Conexion() {
+		poolConexiones = new BasicDataSource();
+		poolConexiones.setDriverClassName(DRIVER);
+		poolConexiones.setUsername(USR);
+		poolConexiones.setUrl(URL);
+		poolConexiones.setPassword(PWD);
 		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/productos_limpieza?serverTimezone=UTC";
-			String usr = "root";
-			String pwd = "admin";
-			conexion = DriverManager.getConnection(url, usr ,pwd);
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	}
+	
+	public static Conexion getConexion() {
+		if (conexion == null) {
+			conexion = new Conexion();
+			
 		}
-		
-		
 		return conexion;
 		
 		
 	}
+	
+	public Connection getCnn() throws SQLException {
+		return poolConexiones.getConnection();
+	}
+	
+
 }
