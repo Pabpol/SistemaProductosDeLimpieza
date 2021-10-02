@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.edutecno.facade.Facade;
+
 /**
  * Servlet implementation class ModificarProducto
  */
@@ -27,7 +29,10 @@ public class ModificarProducto extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		Facade facade = new Facade();
+		int idProducto = Integer.parseInt(request.getParameter("idProducto"));
+		facade.updateProducto(null) ;
+		request.getServletContext().getRequestDispatcher("/Inicio").forward(request, response);
 	}
 
 	/**
