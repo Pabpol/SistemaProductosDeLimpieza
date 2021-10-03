@@ -33,6 +33,7 @@ public class ProductoDAO implements DAO<ProductoDTO, Integer> {
 				producto.setCategoria(new CategoriaDTO(rs.getInt("id_categoria"), rs.getString("nombre_categoria")));
 				productos.add(producto);
 			}
+			cnn.close();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -61,10 +62,12 @@ public class ProductoDAO implements DAO<ProductoDTO, Integer> {
 				producto.setDescripcionProducto(rs.getString("descripcion_producto"));
 				producto.setCategoria(new CategoriaDTO(rs.getInt("id_categoria"), rs.getString("nombre_categoria")));
 			}
+			cnn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 
 		return producto;
 
@@ -91,6 +94,7 @@ public class ProductoDAO implements DAO<ProductoDTO, Integer> {
 			if (registrosAfectados != 1) {
 				throw new RuntimeException("A ocurrido un error inesperado");
 			}
+			cnn.close();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -118,6 +122,7 @@ public class ProductoDAO implements DAO<ProductoDTO, Integer> {
 			if (registrosAfectados != 1) {
 				throw new Exception("Error al actualizar");
 			}
+			cnn.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -139,6 +144,7 @@ public class ProductoDAO implements DAO<ProductoDTO, Integer> {
 			if (registrosAfectados != 1) {
 				throw new Exception("Error al eliminar");
 			}
+			cnn.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -66,9 +66,8 @@
 						<td>
 						<select class="form-select" id="inputGroupSelect01" name="categoria">
 							<%-- <option value="" disabled selected hidden><c:out value="${producto.getCategoria().getNombreCategoria()}"></c:out></option> --%>
-							<option value="" disabled selected hidden>Elegir</option>
-							
-							<option value="Detergente en polvo">Detergente en polvo</option>
+									
+						    <option value="Detergente en polvo">Detergente en polvo</option>
 							<option value="Detergente líquido">Detergente líquido</option>
 						</select> </td>
 						<td class="d-flex justify-content-evenly"><button class="btn btn-primary" type="submit">Modificar</button></td>
