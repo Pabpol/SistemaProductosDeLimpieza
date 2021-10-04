@@ -145,6 +145,7 @@ public class ProductoDAO implements DAO<ProductoDTO, Integer> {
 				throw new Exception("Error al eliminar");
 			}
 			cnn.close();
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

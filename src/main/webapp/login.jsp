@@ -44,10 +44,10 @@
 			<div class="col-5 mx-auto text-center">
 				<div class="card">
 					<div class="card-body">
-						<form action="/ProductosDeLimpieza/Inicio" method="post">
+						<form action="/ProductosDeLimpieza/ProcesaLogin" method="post">
 							<div class="mb-3">
 								<label for="exampleInputEmail1" class="form-label">Usuario</label> 
-								<input type="email" class="form-control"
+								<input type="text" class="form-control"
 									id="exampleInputEmail1" aria-describedby="emailHelp" name="user" placeholder="admin">
 							</div>
 							<div class="mb-3">
@@ -55,7 +55,8 @@
 								<input type="password" class="form-control"
 									id="exampleInputPassword1" name="password" placeholder="admin">
 							</div>
-							<button type="submit" class="btn btn-primary">Ingresar</button>
+							<button type="submit" class="btn btn-primary mb-3">Ingresar</button>
+							<p style="color: red">${alerta} </p>
 						</form>
 					</div>
 				</div>

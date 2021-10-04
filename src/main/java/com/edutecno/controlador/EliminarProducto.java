@@ -33,7 +33,7 @@ public class EliminarProducto extends HttpServlet {
 		Facade facade = new Facade();
 		int idProducto = Integer.parseInt(request.getParameter("idProducto"));
 		facade.deleteProducto(idProducto);
-		request.getServletContext().getRequestDispatcher("/Inicio").forward(request, response);
+		request.getServletContext().getRequestDispatcher("/EntrarSistema").forward(request, response);
 		
 	}
 

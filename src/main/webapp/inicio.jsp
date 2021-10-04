@@ -24,7 +24,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Sistema de Productos</a>
+			<a class="navbar-brand" href="#">Bienvenido ${userName}</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -42,7 +42,7 @@
 	<div class="container-fluid px-0 mx-1 mt-4">
 		<div class="row">
 			<div class="col-sm-8">
-				<div class="d-flex justify-content-between"><h1 class="mb-3">Lista de productos</h1><span><a class="${displayVolver}" href="/ProductosDeLimpieza/Inicio"><button class="btn btn-primary">Volver</button></a></span></div>
+				<div class="d-flex justify-content-between"><h1 class="mb-3">Lista de productos</h1><span><a class="${displayVolver}" href="/ProductosDeLimpieza/EntrarSistema"><button class="btn btn-primary">Volver</button></a></span></div>
 				
 				
 				<table class="table">

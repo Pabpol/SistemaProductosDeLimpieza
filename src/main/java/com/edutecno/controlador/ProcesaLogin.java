@@ -1,30 +1,27 @@
 package com.edutecno.controlador;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.edutecno.facade.Facade;
-import com.edutecno.modelo.dto.ProductoDTO;
+
 
 /**
- * Servlet implementation class BuscarProducto
+ * Servlet implementation class ProcesaLogin
  */
-@WebServlet("/BuscarProducto")
-public class BuscarProducto extends HttpServlet {
+@WebServlet("/ProcesaLogin")
+public class ProcesaLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public BuscarProducto() {
+	public ProcesaLogin() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -36,7 +33,7 @@ public class BuscarProducto extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	/**
@@ -46,29 +43,19 @@ public class BuscarProducto extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Facade facade = new Facade();
-		String idProducto = request.getParameter("idProductoBuscar");
-		List<ProductoDTO> productos;
-		if (idProducto != "") {
-			productos = new ArrayList<>();
-			ProductoDTO producto = facade.buscarProductoID(Integer.parseInt(idProducto));
-			productos.add(producto);
-			request.setAttribute("displayVolver", "d-inline");
-			request.setAttribute("productos", productos);
-			Cookie[] cookies =  request.getCookies();
-			for(Cookie cookieTemporal : cookies) {
-				if ("userName".equals(cookieTemporal.getName())) {	
-					request.setAttribute("userName", cookieTemporal.getValue());
-					break;
-				}
-			}
-			request.getServletContext().getRequestDispatcher("/inicio.jsp").forward(request, response);
-		} else {
-
+		String userName = request.getParameter("user");
+		String password = request.getParameter("password");
+		HttpSession session;
+		if (userName.equals("admin") && password.equals("admin")) {
+			Cookie cookie = new Cookie("userName", userName);
+			cookie.setMaxAge(3600);
+			response.addCookie(cookie);
 			request.getServletContext().getRequestDispatcher("/EntrarSistema").forward(request, response);
+
+		} else {
+			request.setAttribute("alerta", "Nombre de usuario o Conrtaseña incorrecto");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+
 		}
-
-
 	}
-
 }

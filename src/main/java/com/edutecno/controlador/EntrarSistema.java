@@ -15,14 +15,14 @@ import com.edutecno.modelo.dto.ProductoDTO;
 /**
  * Servlet implementation class Inicio
  */
-@WebServlet({"/Inicio"})
-public class Inicio extends HttpServlet {
+@WebServlet({"/EntrarSistema"})
+public class EntrarSistema extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Inicio() {
+    public EntrarSistema() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,11 +32,8 @@ public class Inicio extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Facade facade = new Facade();
-		List<ProductoDTO> productos = facade.listarProductos();
-		request.setAttribute("displayVolver", "d-none");
-		request.setAttribute("productos", productos);
-		request.getServletContext().getRequestDispatcher("/inicio.jsp").forward(request, response);
+
+		request.getServletContext().getRequestDispatcher("/DesplegarLista").forward(request, response);
 		
 	}
 

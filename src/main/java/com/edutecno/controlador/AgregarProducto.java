@@ -58,7 +58,7 @@ public class AgregarProducto extends HttpServlet {
 		producto.setDescripcionProducto(descripcion);
 		producto.setCategoria(new CategoriaDTO(idCategoria, nombreCategoria));
 		facade.insertarProducto(producto);
-		request.getServletContext().getRequestDispatcher("/Inicio").forward(request, response);
+		request.getServletContext().getRequestDispatcher("/EntrarSistema").forward(request, response);
 		
 		
 		
